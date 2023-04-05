@@ -88,14 +88,17 @@ var map = new ol.Map({
     overlays: [overlayPopup],
     layers: layersList,
     view: new ol.View({
-         maxZoom: 27, minZoom: 1
+         maxZoom: 28, minZoom: 1
     })
 });
 
 var layerSwitcher = new ol.control.LayerSwitcher({tipLabel: "Layers"});
 map.addControl(layerSwitcher);
+layerSwitcher.hidePanel = function() {};
+layerSwitcher.showPanel();
 
-map.getView().fit([-20037508.342789, -20037508.342789, 20037508.342789, 20037508.342789], map.getSize());
+
+map.getView().fit([-670450.476459, 708073.174350, -125504.543263, 1135008.679279], map.getSize());
 
 var NO_POPUP = 0
 var ALL_FIELDS = 1
@@ -666,14 +669,6 @@ var geolocateOverlay = new ol.layer.Vector({
 geolocation.setTracking(true);
 
 
-var geocoder = new Geocoder('nominatim', {
-  provider: 'osm',
-  lang: 'en-US',
-  placeholder: 'Search for ...',
-  limit: 5,
-  keepOpen: true
-});
-map.addControl(geocoder);
 
 var attribution = document.getElementsByClassName('ol-attribution')[0];
 var attributionList = attribution.getElementsByTagName('ul')[0];
